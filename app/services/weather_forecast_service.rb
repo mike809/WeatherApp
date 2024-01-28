@@ -1,7 +1,9 @@
 class WeatherForecastService
+  attr_reader :data_state
 
   def initialize(address)
     @address = address
+    @data_state = :cached
   end
 
   def call
@@ -9,6 +11,7 @@ class WeatherForecastService
     zipcode = result.first.postal_code
 
     Rails.cache.fetch(zipcode, expires_in: 30.minutes) do
+      @data_state = :fresh
       coordinates = result.first.coordinates
       get_forecast(coordinates)
     end

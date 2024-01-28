@@ -1,7 +1,9 @@
 class WeatherForecastsController < ApplicationController
 
   def create
-    @forecast = WeatherForecastService.new(params[:address]).call
+    weather_forecast_service = WeatherForecastService.new(params[:address])
+    @forecast = weather_forecast_service.call
+    @data_state = weather_forecast_service.data_state
     render :new, status: 301
   end
 
