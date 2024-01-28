@@ -10,42 +10,49 @@ To optimize performance and reduce unnecessary API calls, the application caches
 
 ### Prerequisites
 
-- Ruby version: Specify the version of Ruby required for your project.
-- System dependencies: List any system dependencies required for your project.
+- Ruby version: 3.2.2
+- Rails version: 7.1.3
+- System dependencies: The following gems are required for this project:
+  - `gem 'geocoder'`: This gem is used to convert addresses into coordinates.
+  - `gem 'httparty'`: This gem is used to make HTTP requests to the weather API.
+  - Other gems specified in the Gemfile.
+
+  - Install Yarn: `npm install --global yarn` (if not already installed)
+
+
 
 ### Installation
 
-Provide step-by-step instructions on how to set up your project locally. This might include commands to clone your repository, install dependencies, and set up any necessary configuration.
+- Clone the repository
+- Run `bundle install`
+- Run `bundle exec rails db:create`
+- Run `bundle exec rails db:migrate`
 
-### Database Setup
+- Obtain a Google Places API key. You can get one from the [Google Cloud Console](https://console.cloud.google.com/).
 
-- Database creation: Provide instructions on how to create the database.
-- Database initialization: Provide instructions on how to initialize the database.
+- Add the Google Places API key to your Rails credentials. You can do this by running the following command in your terminal:
 
-### Running the Tests
+  ```bash
+  EDITOR="nano" rails credentials:edit
+  ```
 
-Explain how to run the automated tests for your system.
+  This will open your credentials file in the nano text editor. Add the following lines to the file:
+
+  ```google:
+  places_api_key: YOUR_GOOGLE_PLACES_API_KEY
+  ```
+  Replace "YOUR_GOOGLE_PLACES_API_KEY" with your out key.
+
+
+- Run `bin/dev`  to start the development server
 
 ### Services
 
-Describe any services your project uses, such as job queues, cache servers, search engines, etc.
+This application uses the `solid_queue` gem for caching forecast data. The cached data is stored in the application's database, so no external caching services are required. This makes the application easier to set up and maintain.
 
-### Deployment
-
-Provide instructions on how to deploy your project.
 
 ## Usage
 
-Provide examples of how to use your project.
+The application features a single form with an address input field. This field uses the Google Places API for autocomplete, ensuring that users can easily and accurately input their addresses.
 
-## Contributing
-
-If you're open to contributions, provide guidelines on how to do so.
-
-## License
-
-If your project is open source, include information about the license.
-
-## Contact
-
-Provide contact information for people to reach out if they have questions or want to collaborate.
+To use the application, simply provide a valid US address in the address input field and submit the form. The application will then display the current weather forecast for the provided address.
