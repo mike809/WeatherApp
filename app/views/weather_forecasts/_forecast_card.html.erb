@@ -1,0 +1,58 @@
+<div class="card mb-4">
+  <div class="card-header">
+    <h4 class="card-subtitle mb-2 text-muted">
+      <%= format_weather_card_time(data["startTime"]) %>
+    </h4>
+  </div>
+  <div class="d-flex justify-content-between mb-4 p-2">
+    <div class="col-6">
+      <h2 class="display-2"><strong><%= data["temperature"] %> <%= data["temperatureUnit"] %></strong></h2>
+      <h4 class="text-muted mb-0"><%= data["name"] %></h4>
+    </div>
+    <div class="col-4">
+      <img src="<%= data["icon"] %>" alt="Weather icon">
+    </div>
+  </div>
+  <div class="card-body">
+    <h6 class="card-text"><%= data["shortForecast"] %></h6>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item bg-light">
+      <div class="row align-items-center">
+        <div class="col-6 font-weight-bold">Start Time:</div>
+        <div class="col-6 text-muted"><%= format_weather_card_time(data["startTime"]) %></div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row align-items-center">
+        <div class="col-6">End Time:</div>
+        <div class="col-6"><%= format_weather_card_time(data["endTime"]) %></div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row align-items-center">
+        <div class="col-6">Relative Humidity:</div>
+        <div class="col-6"><%= data["relativeHumidity"]['value'] %>%</div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row align-items-center">
+        <div class="col-6">Dewpoint:</div>
+        <div class="col-6"><%= data["dewpoint"]['value'].to_f.round(2) %>C</div>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <div class="row align-items-center">
+        <div class="col-6">Wind Speed:</div>
+        <div class="col-6"><%= data["windSpeed"] %></div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="row align-items-center">
+        <div class="col-6">Wind Direction:</div>
+        <div class="col-6"><%= data["windDirection"] %></div>
+      </div>
+    </li>
+  </ul>
+</div>

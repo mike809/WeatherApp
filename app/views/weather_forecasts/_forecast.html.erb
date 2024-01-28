@@ -1,0 +1,11 @@
+<div class="container mt-5">
+  <% @forecast['properties']['periods'].each_slice(3) do |slice| %>
+    <div class="row">
+      <% slice.each do |data| %>
+        <div class="col-md-4">
+          <%= render 'forecast_card', data: data %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
