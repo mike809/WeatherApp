@@ -107,6 +107,9 @@ GEM
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
     dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -292,7 +295,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
-  dotenv
+  dotenv-rails
   geocoder
   httparty
   importmap-rails
