@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "weather_forecasts#new"
-  resources :weather_forecasts, only: [:create, :show]
+  post "/" => "weather_forecasts#create", as: :weather_forecasts
 end

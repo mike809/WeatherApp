@@ -8,10 +8,19 @@ export default class extends Controller {
   }
 
   initGoogle() {
-    var options = { componentRestrictions: {country: "us"} }
+    const options = { componentRestrictions: { country: "us"} }
     const input = document.getElementById('autocomplete')
 
-    new google.maps.places.Autocomplete(input, options)
+    const autocomplete = new google.maps.places.Autocomplete(input, options)
+    autocomplete.addListener('place_changed', this.locationChanged.bind(this))
+  }
+
+  locationChanged() {
+    this.element.submit()
+  }
+
+  preventSubmit(event) {
+    event.preventDefault()
   }
 
 }

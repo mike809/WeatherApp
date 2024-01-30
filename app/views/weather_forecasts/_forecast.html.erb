@@ -1,9 +1,7 @@
 <div class="container mt-5">
-  <div class="alert <%= @data_state == :cached ? 'alert-warning' : 'alert-success' %>">
-    <%= "This data is #{@data_state}." %>
-  </div>
+  <h1 class="display-4 text-center mb-4"><%= forecast.location&.address %></h1>
 
-  <% @forecast['properties']['periods'].each_slice(3) do |slice| %>
+  <% forecast.periods.each_slice(3) do |slice| %>
     <div class="row">
       <% slice.each do |data| %>
         <div class="col-md-4">

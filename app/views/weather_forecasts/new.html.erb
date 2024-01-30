@@ -1,18 +1,16 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <%= form_with(url: weather_forecasts_path, local: true, html: { class: 'form-group' }) do |form| %>
-        <div class="form-group" data-controller="address" data-action="google-maps-callback@window->address#initGoogle">
-          <%= form.label :address, class: 'form-label' %>
+    <div class="col-md-6 pt-4">
+      <%= form_with(url: weather_forecasts_path, local: true, html: { class: 'form-group' }, data: { controller: "address", action: 'keydown.enter->address#preventSubmit' }) do |form| %>
+        <div class="form-group">
+          <%= form.label :address, class: 'form-label', for: 'autocomplete' %>
           <%= form.text_field :address, id: 'autocomplete', class: 'form-control' %>
-        </div>
-
-        <div class="actions mt-3">
-          <%= form.submit class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
 
-<%= render 'forecast', locals: { forecast: @forecast } if @forecast.present? %>
+<turbo-frame id="weather_forecast" data-controller="loading">
+  <%= render partial: 'forecast', locals: { forecast: @forecast } %>
+</turbo-frame>

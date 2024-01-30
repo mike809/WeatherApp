@@ -1,0 +1,18 @@
+<% flash.each do |key, value| %>
+  <div id="<%= key %>" class="alert alert-<%= key == 'error' ? 'danger' : key %>" data-controller="alert">
+    <div class="row">
+      <div class="col-auto">
+        <button type="button" class="btn-close" data-action="alert#close" aria-label="Close"></button>
+      </div>
+      <div class="col text-center">
+        <% if value.is_a?(Array) %>
+          <% value.each do |message| %>
+            <%= message %><br>
+          <% end %>
+        <% else %>
+          <%= value %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

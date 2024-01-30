@@ -6,11 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
 
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.dig(:google, :google_maps_api_key) %>&libraries=places"
+      src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places"
       async
       defer
     ></script>
@@ -19,7 +19,12 @@
   <%= render 'layouts/navbar' %>
 
   <body>
+    <turbo-frame id="flash_messages">
+      <%= render 'layouts/flash_messages' %>
+    </turbo-frame>
+
     <div class="container">
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>

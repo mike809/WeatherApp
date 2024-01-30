@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
-lazyLoadControllersFrom("controllers", application)
+import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
+eagerLoadControllersFrom("controllers", application)
 
 import AddressController from "./address_controller"
 application.register("address", AddressController)
