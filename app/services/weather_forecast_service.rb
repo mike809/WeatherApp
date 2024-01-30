@@ -31,7 +31,7 @@ class WeatherForecastService
     if response.success?
       forecast.periods = JSON.parse(response)["properties"]["periods"]
     else
-      forecast.errors = JSON.parse(response)["title"]
+      forecast.errors << JSON.parse(response)["title"]
     end
   end
 end
