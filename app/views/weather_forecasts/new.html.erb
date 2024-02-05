@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6 pt-4">
-      <%= form_with(url: weather_forecasts_path, local: true, html: { class: 'form-group' }, data: { controller: "address", action: 'keydown.enter->address#preventSubmit' }) do |form| %>
+      <%= form_with(url: weather_forecasts_path, html: { class: 'form-group' },
+        data: { controller: "address", action: 'keydown.enter->address#preventSubmit' }) do |form| %>
         <div class="form-group">
           <%= form.label :address, class: 'form-label', for: 'autocomplete' %>
           <%= form.text_field :address, id: 'autocomplete', class: 'form-control' %>
@@ -11,6 +12,10 @@
   </div>
 </div>
 
-<turbo-frame id="weather_forecast" data-controller="loading">
+<%= turbo_frame_tag "flash_messages" do %>
+  <%= render 'layouts/flash_messages' %>
+<% end %>
+
+<%= turbo_frame_tag "weather_forecast", data: { controller: "loading" } do %>
   <%= render partial: 'forecast', locals: { forecast: @forecast } %>
-</turbo-frame>
+<% end %>

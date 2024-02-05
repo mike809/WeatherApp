@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload"  %>
     <%= javascript_importmap_tags %>
 
     <script
@@ -19,10 +19,6 @@
   <%= render 'layouts/navbar' %>
 
   <body>
-    <turbo-frame id="flash_messages">
-      <%= render 'layouts/flash_messages' %>
-    </turbo-frame>
-
     <div class="container">
       <%= yield %>
     </div>

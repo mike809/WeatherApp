@@ -13,7 +13,7 @@ class WeatherForecastsController < ApplicationController
       flash.now[:error] = @forecast.errors
     end
 
-    render :new
+    render :new, status: 301
   end
 
   private
