@@ -1,13 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6 pt-4">
-      <%= form_with(url: weather_forecasts_path, html: { class: 'form-group' },
-        data: { controller: "address", action: 'keydown.enter->address#preventSubmit' }) do |form| %>
-        <div class="form-group">
-          <%= form.label :address, class: 'form-label', for: 'autocomplete' %>
-          <%= form.text_field :address, id: 'autocomplete', class: 'form-control' %>
-        </div>
-      <% end %>
+      <%= render 'form' %>
     </div>
   </div>
 </div>
