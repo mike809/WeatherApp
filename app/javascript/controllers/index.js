@@ -9,3 +9,9 @@ eagerLoadControllersFrom("controllers", application)
 
 import AddressController from "./address_controller"
 application.register("address", AddressController)
+
+import AlertController from "./alert_controller"
+application.register("alert", AlertController)
+
+import LoadingController from "./loading_controller"
+application.register("loading", LoadingController)

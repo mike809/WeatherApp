@@ -4,20 +4,23 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   connect() {
-    console.log('Loading controller connected');
-
-    this.element.addEventListener('turbo:before-fetch-request', this.startLoading);
-    this.element.addEventListener('turbo:frame-render', this.stopLoading);
+    document.addEventListener('turbo:before-fetch-request', this.startLoading);
+    document.addEventListener('turbo:before-fetch-response', this.stopLoading);
   }
 
   startLoading = () => {
-    console.log('Start loading called');
-    this.element.innerHTML = '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>';
+    // Show the spinner element if it exists, otherwise do nothing
+    const spinner_html = `
+      <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>`;
+    this.element.innerHTML = spinner_html
   }
 
   stopLoading = () => {
-    console.log('Stop loading called');
-
+    // Hide the spinner element if it exists, otherwise do nothing
     this.element.innerHTML = '';
   }
 }
