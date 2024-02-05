@@ -16,13 +16,6 @@ export default class extends Controller {
   }
 
   locationChanged() {
-    const event = new Event("submit")
-    this.element.dispatchEvent(event)
+    this.element.requestSubmit()
   }
-
-  preventSubmit(event) {
-    console.log('Prevent submit called')
-    // event.preventDefault()
-  }
-
 }

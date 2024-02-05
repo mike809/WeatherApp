@@ -25,11 +25,15 @@ class WeatherForecastService
     url = "https://api.weather.gov/points/#{coordinates[0]},#{coordinates[1]}"
     response = HTTParty.get(url)
 
-    forecast_url = JSON.parse(response)["properties"]["forecast"]
-    response = HTTParty.get(forecast_url)
-
     if response.success?
-      forecast.periods = JSON.parse(response)["properties"]["periods"]
+      forecast_url = JSON.parse(response)["properties"]["forecast"]
+      response = HTTParty.get(forecast_url)
+
+      if response.success?
+        forecast.periods = JSON.parse(response)["properties"]["periods"]
+      else
+        forecast.errors << JSON.parse(response)["title"]
+      end
     else
       forecast.errors << JSON.parse(response)["title"]
     end
