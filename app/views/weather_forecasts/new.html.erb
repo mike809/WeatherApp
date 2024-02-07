@@ -1,14 +1,10 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6 pt-4">
-      <%= render 'form' %>
-    </div>
+    <%= turbo_frame_tag "flash_messages", style: 'height: 50px' do %>
+      <%= render 'layouts/flash_messages' %>
+    <% end %>
   </div>
 </div>
-
-<%= turbo_frame_tag "flash_messages" do %>
-  <%= render 'layouts/flash_messages' %>
-<% end %>
 
 <%= turbo_frame_tag "weather_forecast", data: { controller: "loading" } do %>
   <%= render partial: 'forecast', locals: { forecast: @forecast } %>
