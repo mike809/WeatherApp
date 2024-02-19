@@ -17,9 +17,17 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <%= render 'layouts/navbar' %>
+  <body data-controller="loading">
+    <%= render 'layouts/navbar' %>
 
-  <body>
+    <div class="row justify-content-center">
+      <%= turbo_frame_tag "flash_messages", style: 'height: 50px' do %>
+        <%= render 'shared/flash_messages' %>
+      <% end %>
+    </div>
+
+    <%= turbo_frame_tag 'pinned_locations', src: locations_path %>
+
     <div class="container">
       <%= yield %>
     </div>

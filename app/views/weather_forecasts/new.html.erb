@@ -1,11 +1,7 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <%= turbo_frame_tag "flash_messages", style: 'height: 50px' do %>
-      <%= render 'layouts/flash_messages' %>
+<div data-loading-target="spinner" >
+  <%= turbo_frame_tag "weather_forecast" do %>
+    <% if @forecast.periods.present? %>
+      <%= render partial: 'forecast', locals: { forecast: @forecast } %>
     <% end %>
-  </div>
+  <% end %>
 </div>
-
-<%= turbo_frame_tag "weather_forecast", data: { controller: "loading" } do %>
-  <%= render partial: 'forecast', locals: { forecast: @forecast } %>
-<% end %>

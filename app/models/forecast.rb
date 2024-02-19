@@ -9,9 +9,9 @@ class Forecast
     @errors = []
   end
 
-  def location=(location)
-    @location = location
-    @zipcode = location&.postal_code.presence || location&.address&.match(/\d{5}(-\d{4})?/)
+  def location=(forecast_location)
+    @location = forecast_location
+    @zipcode = forecast_location&.postal_code.presence || forecast_location&.address&.match(/\d{5}(-\d{4})?/)[0]
 
     errors << "No location found for this address." if @location.nil?
     errors << "No zipcode found for this address." if @zipcode.nil?

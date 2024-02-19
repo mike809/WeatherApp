@@ -2,10 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="loading"
 export default class extends Controller {
+  static targets = [ "spinner", "form" ]
 
   connect() {
-    document.addEventListener('turbo:before-fetch-request', this.startLoading);
-    document.addEventListener('turbo:before-fetch-response', this.stopLoading);
+    this.oldHtml = null;
+    this.formTarget.addEventListener('turbo:before-fetch-request', this.startLoading);
   }
 
   startLoading = () => {
@@ -16,11 +17,6 @@ export default class extends Controller {
           <span class="sr-only">Loading...</span>
         </div>
       </div>`;
-    this.element.innerHTML = spinner_html
-  }
-
-  stopLoading = () => {
-    // Hide the spinner element if it exists, otherwise do nothing
-    this.element.innerHTML = '';
+    this.spinnerTarget.innerHTML = spinner_html
   }
 }

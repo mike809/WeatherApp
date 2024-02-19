@@ -1,0 +1,9 @@
+<%= turbo_frame_tag :pinned_locations do %>
+  <% @locations.each_slice(3) do |slice| %>
+    <div class="row">
+      <% slice.each do |location| %>
+        <%= render location %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

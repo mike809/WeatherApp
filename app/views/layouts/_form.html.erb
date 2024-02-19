@@ -1,4 +1,6 @@
-<%= form_with(url: weather_forecasts_path, html: { class: "form-inline ml-auto my-2 my-lg-0" }, data: { controller: "address" }) do |form| %>
-  <%= form.text_field :address, id: "autocomplete", class: "form-control mr-sm-2", type: "search", placeholder: "Address" %>
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<%= form_with(url: weather_forecasts_path,
+  html: { class: "form-inline ml-auto my-2 my-lg-0" },
+  data: { controller: "address", "loading-target": 'form' }) do |form| %>
+    <%= form.text_field :address, id: "autocomplete", class: "form-control mr-sm-2", type: "search", placeholder: "Address" %>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 <% end %>

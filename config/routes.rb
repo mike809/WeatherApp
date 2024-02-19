@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :home, only: [:index]
+  resources :locations, only: [:create, :index, :show, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,11 +1,18 @@
 <div class="container mt-5">
   <h1 class="display-4 text-center mb-4"><%= forecast.location&.address %></h1>
 
+  <%= form_with url: locations_path, scope: :location, method: :post, data: { controller: "location" } do |form| %>
+    <%= form.hidden_field :address, value: forecast.location&.address %>
+    <%= button_tag type: 'submit', class: "pin-button m-1 px-3 py-2 rounded border-0" do %>
+      <i class="bi bi-pin"></i>
+    <% end %>
+  <% end %>
+
   <% forecast.periods.each_slice(3) do |slice| %>
     <div class="row">
       <% slice.each do |data| %>
         <div class="col-md-4">
-          <%= render 'forecast_card', data: data %>
+          <%= render 'shared/forecast_card', data: data %>
         </div>
       <% end %>
     </div>
